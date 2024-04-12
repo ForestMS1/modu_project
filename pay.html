@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>참가비 결제 화면</title>
+<link rel="stylesheet" href="pay_style.css">
+</head>
+<body>
+
+<div class="payment-container">
+    <h2>참가비 결제</h2>
+    <form class="payment-form">
+        <div class="form-group">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="cardNumber">카드 번호:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="expDate">유효 기간:</label>
+            <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">결제하기</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>챌린지 상세 - 모두의 일퀘</title>
+<link href="/challenge_detail_style.css" rel="stylesheet">
+</head>
+<body>
+<div class="challenge-container">
+    <div class="challenge-photo">
+        <img src="/img/challenge_photo.jpg" alt="챌린지 대표 사진">
+    </div>
+    <div class="participant-list">
+        <h3>참여 인원 <%= 챌린지.participants %>명</h3>
+        <ul>
+            <% for(let i = 0; i < 챌린지.in_user_ID.length; i++) {%>
+            <li><%=챌린지.in_user_ID[i] %></li>
+            <% } %>
+            <!-- 참가자 목록 추가 -->
+        </ul>
+    </div>
+    <div class="achievement-rate">
+        <h3>나의 달성률</h3>
+        <div class="progress-bar">
+            <div class="progress" style="width: 75%;">75%</div>
+        </div>
+    </div>
+    
+</div>
+</body>
+</html>

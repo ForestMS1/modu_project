@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>모두의 일퀘 - 챌린지 리스트</title>
+        <link href="/main_style.css" rel="stylesheet">
+    </head>
+    <body>
+    <header>
+        <nav>
+            <ul>
+                <li>홈페이지</li>
+                <li>챌린지 리스트</li>
+                <li>커뮤니티</li>
+                <li><a href= "/login">로그인</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="challenge-list">
+            <h1>챌린지 리스트</h1>
+            <% for(let i = 0; i < 챌린지.length; i++) { %>
+            <div class="challenge-card">
+                <h2><%= 챌린지[i].title %></h2>
+                <p>참여인원 : <%= 챌린지[i].participants %>명</p>
+                <button><a href="/challenge_detail/<%= 챌린지[i]._id %>">참여하기</a></button>
+            </div>
+            <% } %>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 모두의 일퀘. All rights reserved.</p>
+    </footer>
+    </body>
+</html>

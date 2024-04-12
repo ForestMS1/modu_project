@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>챌린지 생성 화면</title>
+<link rel="stylesheet" href="create_challenge_style.css">
+</head>
+<body>
+
+<div class="challenge-create-container">
+    <h2>챌린지 생성</h2>
+    <form class="challenge-form">
+        <div class="form-group">
+            <label for="challengeName">챌린지 이름:</label>
+            <input type="text" id="challengeName" name="challengeName" required>
+        </div>
+        <div class="form-group">
+            <label for="minParticipationFee">최소 참가비:</label>
+            <select id="minParticipationFee" name="minParticipationFee">
+                <option value="30000">3만원</option>
+                <option value="50000">5만원</option>
+                <option value="100000">10만원</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="goalPeriod">목표 기간:</label>
+            <input type="text" id="goalPeriod" name="goalPeriod" placeholder="예: 30일" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">챌린지 생성</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
