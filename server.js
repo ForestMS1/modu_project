@@ -33,7 +33,7 @@ app.get('/main', async(request, response) => {
     let result = await db.collection('card').find().toArray()
     response.render('main.ejs',{챌린지 : result})
 })
-//ID: daesung //pw: ReJWrIXa1WEzyPBF
+
 
 app.get('/login', (request,response) =>{
     response.sendFile(__dirname + '/login.html')
