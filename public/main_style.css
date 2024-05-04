@@ -32,10 +32,6 @@ main {
     padding: 20px;
 }
 
-.challenge-list h1 {
-    text-align: center;
-}
-
 .challenge-card {
     background-color: #ffffff;
     border: 1px solid #dddddd;
@@ -69,4 +65,10 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+svg {
+    position: fixed;
+    top: 75%;
+    left: 93%;
 }

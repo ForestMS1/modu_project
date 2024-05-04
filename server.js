@@ -34,7 +34,6 @@ app.get('/main', async(request, response) => {
     response.render('main.ejs',{챌린지 : result})
 })
 
-
 app.get('/login', (request,response) =>{
     response.sendFile(__dirname + '/login.html')
 })
@@ -46,4 +45,13 @@ app.get('/signup',(request,response)=>{
 app.get('/challenge_detail/:id', async(request,response)=>{
     let result = await db.collection('card').findOne({_id : new ObjectId(request.params.id)})
     response.render('challenge_detail',{챌린지 : result})
+})
+
+app.get('/create_challenge',(request, response) =>{
+    response.sendFile(__dirname + '/create_challenge.html')
+})
+
+app.get('/del/:id', async(request,response)=>{
+    await db.collection('card').deleteOne({_id : new ObjectId(request.params.id)})
+    response.redirect('/main')
 })

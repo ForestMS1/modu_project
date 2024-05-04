@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "method-override": "^3.0.0",

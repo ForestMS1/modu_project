@@ -26,7 +26,18 @@
             <div class="progress" style="width: 75%;">75%</div>
         </div>
     </div>
+    <span class="delete"><a href="/del/<%= 챌린지._id %>">☠️</a></span>
     
 </div>
+
+<!-- <script>
+    document.querySelector('.delete')
+    .addEventListener('click',function(){
+        //새로고침없이 서버에 요청 Ajax
+        fetch('/del/<%= 챌린지._id %>', {
+            method : 'DELETE'
+        })
+    })
+</script> -->
 </body>
 </html>
