@@ -37,8 +37,11 @@ main {
     border: 1px solid #dddddd;
     padding: 20px;
     margin: 20px auto;
-    width: 80%;
+    margin-right: 10px;
+    width: 13%;
     text-align: center;
+    display: inline-block;
+
 }
 
 .challenge-card h2 {
@@ -57,6 +60,24 @@ button {
     cursor: pointer;
 }
 
+.create_button {
+    position: fixed;
+    bottom: 15%;
+    left: 95%;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.pagenation {
+    position: fixed;
+    bottom: 15%;
+    left: 40%;
+}
+
+
 footer {
     background-color: #333333;
     color: #ffffff;
@@ -65,10 +86,4 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-}
-
-svg {
-    position: fixed;
-    top: 75%;
-    left: 93%;
 }

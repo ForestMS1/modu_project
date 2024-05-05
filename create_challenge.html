@@ -10,7 +10,7 @@
 
 <div class="challenge-create-container">
     <h2>챌린지 생성</h2>
-    <form class="challenge-form">
+    <form class="challenge-form" action="/create_challenge_add" method="POST">
         <div class="form-group">
             <label for="challengeName">챌린지 이름:</label>
             <input type="text" id="challengeName" name="challengeName" required>
@@ -24,8 +24,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="goalPeriod">목표 기간:</label>
-            <input type="text" id="goalPeriod" name="goalPeriod" placeholder="예: 30일" required>
+            <label for="goalPeriod">목표 일수:</label>
+            <input type="number" id="goalPeriod" name="goalPeriod" placeholder="예: 30" required>
         </div>
         <div class="form-group">
             <button type="submit">챌린지 생성</button>

@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="login-container">
-    <form class="login-form">
+    <form class="login-form" action="/login" method="POST">
         <h2>로그인</h2>
         <div class="input-group">
             <label for="username">사용자 이름</label>
@@ -20,7 +20,7 @@
         </div>
         <button type="submit">로그인</button>
         <p></p>
-        <button type="button"><a href="/signup">회원가입</a></button>
+        <button type="button" onclick="location.href='/signup'">회원가입</button>
     </form>
 </div>
 </body>
