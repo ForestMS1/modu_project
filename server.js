@@ -124,34 +124,6 @@ app.get('/main/:num', async(request, response) => {
     response.render('main.ejs',{챌린지 : result})
 })
 
-app.get('/challenge_detail/:id', async(request,response)=>{
-    let result = await db.collection('card').findOne({_id : new ObjectId(request.params.id)})
-    response.render('challenge_detail',{챌린지 : result})
-})
-
-app.get('/create_challenge',(request, response) =>{
-    response.sendFile(__dirname + '/create_challenge.html')
-})
-
-app.get('/del/:id', async(request,response)=>{
-    await db.collection('card').deleteOne({_id : new ObjectId(request.params.id)})
-    response.redirect('/main')
-})
-
-app.post('/create_challenge_add', async(request, response)=>{
-    await db.collection('card').insertOne(
-        {   title : request.body.challengeName ,
-            fee : parseInt(request.body.minParticipationFee) ,
-            deadline : new Date() + parseInt(request.body.goalPeriod) ,
-            participants : 1,
-            total_prize : parseInt(request.body.minParticipationFee),
-            in_user_ID : 'master'
-        }
-    )
-    response.redirect('/main')
-})
-
-
 
 app.use('/', require('./routes/navbar.js'))
 app.use('/', require('./routes/challenge.js'))
