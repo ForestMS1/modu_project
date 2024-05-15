@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(lightCyan, skyBlue, deepSkyBlue);
+    background-size: cover;
+    background-position: center;
+}
+
+.cover-title {
+    font-size: 72px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: glow 2s linear infinite alternate;
+}
+
+
+button {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 50px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
