@@ -4,7 +4,7 @@ const { MongoClient, ObjectId} = require('mongodb');
 const methodOverride = require('method-override')
 //비밀번호 해싱을 위한 bcrypt알고리즘 셋팅
 const bcrypt = require('bcrypt')
-
+require('dotenv').config()
 
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/public'))
@@ -22,12 +22,12 @@ const connectDB = require('./database.js');
 //app.use 순서 지키기
 app.use(passport.initialize())
 app.use(session({
-  secret: 'abkmdsizpxlq',
+  secret: process.env.SECRET,
   resave : false,
   saveUninitialized : false,
   cookie : { maxAge : 60 * 60 * 1000}, //1시간 유지
   store : MongoStore.create({
-    mongoUrl : 'mongodb+srv://daesung:ReJWrIXa1WEzyPBF@cluster0.v4siqil.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+    mongoUrl : process.env.DB_URL,
     dbName : 'Challenge',
   })
 }))
@@ -36,12 +36,12 @@ app.use(passport.session())
 let conDB = require('./database.js')
 
 let db;
-const url = 'mongodb+srv://daesung:ReJWrIXa1WEzyPBF@cluster0.v4siqil.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const url = process.env.DB_URL;
 conDB.then((client)=>{
     console.log('DB연결성공')
     db = client.db('Challenge');
     //서버 띄우는 코드 //port = 연결하는구멍 //port 여는 코드
-    app.listen(8081, () => {
+    app.listen(process.env.PORT, () => {
     console.log('http://localhost:8081 에서 서버 실행중')
 })
 }).catch((err)=>{
@@ -78,13 +78,23 @@ passport.deserializeUser(async(user, done) => {
     })
 }) //이제 request.user 하면 현재 로그인한 유저 정보 불러오기 가능
 
+
+function LogInCheck(request, response,next){
+    if(!request.isAuthenticated()){
+        response.redirect('/login');
+    } else {
+        next()
+    }
+}
+
 app.get('/', (request,response) =>{
     response.sendFile(__dirname + '/welcome.html')
 })
 //메인페이지 접속
-app.get('/main', async(request, response) => {
+app.get('/main',LogInCheck, async(request, response) => {
     let result = await db.collection('card').find().skip(10*(request.params.num-1)).limit(10*request.params.num).toArray()
-    response.render('main.ejs',{챌린지 : result})
+    let user = await db.collection('user').findOne({username : request.user.username})
+    response.render('main.ejs',{챌린지 : result , 유저 : user})
 })
 
 //로그인 기능
@@ -99,6 +109,18 @@ app.post('/login', async(request, response, next) =>{
         
     })(request, response, next)
 })
+
+//로그아웃 기능
+app.get('/logout', (request, response, next) => {
+    request.logOut(err => {
+      if (err) {
+        return next(err);
+      } else {
+        console.log('로그아웃됨.');
+        response.redirect('/');
+      }
+    });
+  });
 
 //회원가입 예외처리 추가할것!
 app.post('/signup', async(request,response)=>{
