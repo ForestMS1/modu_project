@@ -7,12 +7,26 @@
 <link href="/challenge_detail_style.css" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/main">홈페이지</a></li>
+                <li>인기 챌린지</li>
+                <li>커뮤니티</li>
+                <li><a href= "/logout">로그아웃</a></li>
+                <li><a href = "/mypage">My Page</a></li>
+                <li>My Cash : <%= 유저.cash%></li>
+                <li><a href="/pay">Cash+</a></li>
+                <li>로그인된 아이디 : <%= 유저.username%></li>
+            </ul>
+        </nav>
+    </header>
 <div class="challenge-container">
     <div class="challenge-photo">
         <img src="/img/challenge_photo.jpg" alt="챌린지 대표 사진">
     </div>
     <div class="participant-list">
-        <h3>참여 인원 <%= 챌린지.participants %>명</h3>
+        <h3>참여 인원 <%= 챌린지.participants %>명</h3> <h3>챌린지 주인 : <%= 챌린지.managerID %></h3>
         <ul>
             <% for(let i = 0; i < 챌린지.in_user_ID.length; i++) {%>
             <li><%=챌린지.in_user_ID[i] %></li>
@@ -20,24 +34,25 @@
             <!-- 참가자 목록 추가 -->
         </ul>
     </div>
-    <div class="achievement-rate">
-        <h3>나의 달성률</h3>
-        <div class="progress-bar">
-            <div class="progress" style="width: 75%;">75%</div>
-        </div>
+    <div>
+        <h3>참가비용 : <%= 챌린지.fee %></h3>
+        <h3>쌓인 상금 : <%= 챌린지.total_prize %></h3>
     </div>
-    <span class="delete"><a href="/del/<%= 챌린지._id %>">☠️</a></span>
-    
+    <div class="achievement-rate">
+        <h3>나의 예상 환급금액 : <%= 챌린지.total_prize/챌린지.participants %></h3>
+        <!-- <div class="progress-bar">
+            <div class="progress" style="width: 75%;">75%</div>
+        </div> -->
+    </div>
+    <button onclick="refreshPage()" id="refreshPage">페이지 상태 최신화</button>
+    <button onclick="location.href='/challenge_giveup/<%= 챌린지._id %>'">챌린지 중도포기</button>
+    <button onclick="location.href='/challenge_end/<%= 챌린지._id %>'" id="challenge_end">챌린지 끝내기</button>
+    <button class="delete" onclick="location.href='/del/<%= 챌린지._id %>'">챌린지 삭제</button>
 </div>
-
-<!-- <script>
-    document.querySelector('.delete')
-    .addEventListener('click',function(){
-        //새로고침없이 서버에 요청 Ajax
-        fetch('/del/<%= 챌린지._id %>', {
-            method : 'DELETE'
-        })
-    })
-</script> -->
+<script>
+    function refreshPage() {
+        window.location.reload();
+    }
+</script>
 </body>
 </html>

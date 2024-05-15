@@ -7,10 +7,23 @@
 <link rel="stylesheet" href="pay_style.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/main">홈페이지</a></li>
+                <li>인기 챌린지</li>
+                <li>커뮤니티</li>
+                <li><a href= "/logout">로그아웃</a></li>
+                <li><a href = "/mypage">My Page</a></li>
+                <li>My Cash : <%= 유저.cash%></li>
+                <li><a href="/pay">Cash+</a></li>
+            </ul>
+        </nav>
+    </header>
 
 <div class="payment-container">
     <h2>참가비 결제</h2>
-    <form class="payment-form">
+    <form class="payment-form" action="/pay" method="POST">
         <div class="form-group">
             <label for="name">이름:</label>
             <input type="text" id="name" name="name" required>
@@ -30,6 +43,10 @@
         <div class="form-group">
             <label for="cvv">CVV:</label>
             <input type="text" id="cvv" name="cvv" required>
+        </div>
+        <div class="form-group">
+            <label for="payment">지불 금액:</label>
+            <input type="text" id="payment" name="payment" required>
         </div>
         <div class="form-group">
             <button type="submit">결제하기</button>

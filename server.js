@@ -53,7 +53,7 @@ passport.use(new LocalStrategy(async (입력한아이디, 입력한비번, cb) =
     let result = await db.collection('user').findOne({ username : 입력한아이디})
     console.log(result)
     if (!result) {
-      return cb(null, false, { message: '아이디 DB에 없음' })
+        return cb(null, false, { message: '아이디 DB에 없음' })
     }
     if (await bcrypt.compare(입력한비번.toString(), result.password)) {
       return cb(null, result)
@@ -79,6 +79,11 @@ passport.deserializeUser(async(user, done) => {
 }) //이제 request.user 하면 현재 로그인한 유저 정보 불러오기 가능
 
 
+//맨 처음 페이지
+app.get('/', (request,response) =>{
+    response.sendFile(__dirname + '/welcome.html')
+})
+
 function LogInCheck(request, response,next){
     if(!request.isAuthenticated()){
         response.redirect('/login');
@@ -86,10 +91,6 @@ function LogInCheck(request, response,next){
         next()
     }
 }
-
-app.get('/', (request,response) =>{
-    response.sendFile(__dirname + '/welcome.html')
-})
 //메인페이지 접속
 app.get('/main',LogInCheck, async(request, response) => {
     let result = await db.collection('card').find().skip(10*(request.params.num-1)).limit(10*request.params.num).toArray()
@@ -122,19 +123,20 @@ app.get('/logout', (request, response, next) => {
     });
   });
 
+
 //회원가입 예외처리 추가할것!
 app.post('/signup', async(request,response)=>{
 
     let hash = await bcrypt.hash(request.body.password,10)
-    let compare = await db.collection('user').findOne({username : request.user.username})
-    if(compare) return response.status(400).send('이미 있는 아이디입니다.')
-
+    let compare = await db.collection('user').findOne({username : request.body.username})
+    if(compare) return response.send("<script>alert('이미 존재하는 아이디입니다.');window.location.replace('/signup')</script>");
+    if(request.body.password != request.body.password_check) return response.send("<script>alert('비밀번호가 다릅니다.');window.location.replace('/signup')</script>")
     await db.collection('user').insertOne(
         {
             username : request.body.username,
             password : hash,
             cash : 0,
-            participating_in_challenge : ""
+            participating_in_challenge : []
         }
     )
     response.redirect('/main')
@@ -143,8 +145,10 @@ app.post('/signup', async(request,response)=>{
 //페이지네이션
 app.get('/main/:num', async(request, response) => {
     let result = await db.collection('card').find().skip(10*(request.params.num-1)).limit(10*request.params.num).toArray()
-    response.render('main.ejs',{챌린지 : result})
+    let user = await db.collection('user').findOne({username : request.user.username})
+    response.render('main.ejs',{챌린지 : result, 유저 : user})
 })
+
 
 
 app.use('/', require('./routes/navbar.js'))

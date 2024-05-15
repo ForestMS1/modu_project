@@ -5,6 +5,39 @@ body {
     background-color: #f4f4f4;
 }
 
+header {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+nav {
+    background-color: #007bff; /* 네비게이션 배경색 변경 */
+    color: #ffffff;
+    padding: 20px 0;
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+nav ul {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
 .challenge-container {
     width: 80%;
     margin: 0 auto;
@@ -51,4 +84,15 @@ body {
     border-radius: 15px;
     height: 20px;
     width: 0%; /* JavaScript로 동적으로 변경할 수 있습니다 */
+}
+
+button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
 }

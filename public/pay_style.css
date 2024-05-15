@@ -2,6 +2,43 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
+    padding: 0; /* 상단과 좌우의 패딩 제거 */
+}
+
+header {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+nav {
+    background-color: #007bff; /* 네비게이션 배경색 변경 */
+    color: #ffffff;
+    padding: 20px 0;
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+nav ul {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
     padding: 20px;
 }
 
@@ -9,7 +46,7 @@ body {
     background-color: #ffffff;
     width: 100%;
     max-width: 400px;
-    margin: auto;
+    margin: 80px auto; /* 네비게이션의 높이만큼 상단에 여백 추가 */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);

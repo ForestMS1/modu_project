@@ -16,6 +16,8 @@
                 <li><a href= "/logout">로그아웃</a></li>
                 <li><a href = "/mypage">My Page</a></li>
                 <li>My Cash : <%= 유저.cash%></li>
+                <li><a href="/pay">Cash+</a></li>
+                <li>로그인된 아이디 : <%= 유저.username%></li>
             </ul>
         </nav>
     </header>
@@ -28,6 +30,7 @@
             <div class="challenge-card">
                 <h2><%= 챌린지[i].title %></h2>
                 <p>참여인원 : <%= 챌린지[i].participants %>명</p>
+                <p>챌린지 종료 : <%= 챌린지[i].deadline %></p>
                 <button onClick="location.href='/challenge_detail/<%= 챌린지[i]._id %>'">참여하기</button>
             </div>
             <% } %>
