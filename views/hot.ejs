@@ -24,7 +24,7 @@
 
     <main>
         <section class="challenge-list">
-            <h1 style="text-align: center;">챌린지 리스트</h1>
+            <h1 style="text-align: center;">TOP_5 챌린지</h1>
 
             <% for(let i = 0; i < 챌린지.length; i++) { %>
             <div class="challenge-card">
@@ -37,16 +37,6 @@
             <% } %>
 
         </section>
-
-        <div class="pagenation">
-            <button id="before_btn"><-</button>
-            <button onClick="location.href='/main/1'" id="one">1</button>
-            <button onClick="location.href='/main/2'" id="two">2</button>
-            <button onClick="location.href='/main/3'" id="thr">3</button>
-            <button onClick="location.href='/main/4'" id="four">4</button>
-            <button onClick="location.href='/main/5'" id="five">5</button>
-            <button id="next_btn">-></button>
-        </div>
     </main>
 
     <button onClick="location.href='/create_challenge'" class="create_button">+</button>

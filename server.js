@@ -144,7 +144,7 @@ app.post('/signup', async(request,response)=>{
 
 //페이지네이션
 app.get('/main/:num', async(request, response) => {
-    let result = await db.collection('card').find().skip(10*(request.params.num-1)).limit(10*request.params.num).toArray()
+    let result = await db.collection('card').find().skip(12*(request.params.num-1)).limit(12*request.params.num).toArray()
     let user = await db.collection('user').findOne({username : request.user.username})
     response.render('main.ejs',{챌린지 : result, 유저 : user})
 })

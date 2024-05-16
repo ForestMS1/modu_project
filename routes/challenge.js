@@ -122,4 +122,13 @@ router.get('/challenge_giveup/:id', async(request, response)=>{
     return response.send("<script>alert('챌린지를 중도 포기하셨습니다.');window.location.replace('/main')</script>");
 })
 
+router.get('/hot', async(request, response)=>{
+    let result = await db.collection('card').aggregate([
+        { $sort: { participants: -1 } }, // 참여 인원수를 내림차순으로 정렬
+        { $limit: 5 } // 상위 5개 결과만 반환
+    ]).toArray();
+    let user = await db.collection('user').findOne({username : request.user.username})
+    response.render('hot.ejs',{챌린지 : result , 유저 : user})
+})
+
 module.exports = router
